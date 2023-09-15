@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -46,7 +46,8 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc --outDir dist/lib --declarationDir dist/types --declaration true && rollup -c",
+    "build": "tsc",
+    "rollup": "yarn build && --outDir dist/lib --declarationDir dist/types --declaration true && rollup -c",
     "npm:publish": "yarn build && yarn publish"
   }
 }
