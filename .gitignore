@@ -17,6 +17,7 @@ out
 # production
 build
 dist
+lib
 
 # misc
 .DS_Store
@@ -39,3 +40,4 @@ env*.json
 # typescript
 *.tsbuildinfo
 bff/opt/*
+storybook-static/*

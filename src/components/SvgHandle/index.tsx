@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import HandleSVG, { HandleSvgFunc } from '@koralabs/handle-svg';
+import HandleSVG from '@koralabs/handle-svg';
 import { IHandleSvgOptions } from '@koralabs/handles-public-api-interfaces';
 import { useContainerDimensions } from '../../hooks/useContainerDimensions';
-import { hexStringToColor } from '../../lib/helpers';
+import { hexStringToColor } from '../../helpers';
 
 interface SvgHandleProps extends IHandleSvgOptions {
     handle: string;
@@ -30,11 +30,12 @@ const emptyOptions: IHandleSvgOptions = {
     socials: undefined
 }
 
-export const SvgHandle: React.FC<SvgHandleProps> = ({ handle, disableDollarSymbol, ...rest }) => {
+export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollarSymbol, ...rest }) => {
+
     const [loadedHandleName, setLoadedHandleName] = useState<string | null>(null);
     const [loadedOg, setLoadedOg] = useState<string | null>(null);
     const [loadedSocials, setLoadedSocials] = useState<string | null>(null);
-    const [loadedQrCode, setLoadedQrCode] = useState<string | null>(null)
+    const [loadedQrCode, setLoadedQrCode] = useState<string | null>(null);
     const [wawoffModule, setWawoffModule] = useState<any | null>(null);
 
     const componentRef = useRef<HTMLDivElement | null>(null);
@@ -42,7 +43,16 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle, disableDollarSymbo
 
     const handleNameRef = useRef<SVGSVGElement | null>(null);
 
-    const options: IHandleSvgOptions = useMemo(() => ({ ...rest }), [rest]);
+    const options: IHandleSvgOptions = useMemo(() => Object.entries(rest).reduce<IHandleSvgOptions>((agg, [k, v]) => {
+        if (v) {
+            // if v is a string and starts with #, replace with 0x
+            if (typeof v === 'string' && v.startsWith('#')) {
+                return { ...agg, [k]: v.replace('#', '0x') }
+            }
+            return { ...agg, [k]: v }
+        }
+        return agg;
+    }, {}), [rest]);
 
     const {
         bg_color,
