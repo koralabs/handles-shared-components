@@ -37,6 +37,9 @@ export default [
       postcss({
         extensions: [".css"],
       }),
+      typescript({
+        tsconfig: "./tsconfig.json",
+      }),
     ],
   },
   {
