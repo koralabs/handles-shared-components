@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -51,5 +51,9 @@
     "build-storybook": "storybook build",
     "build": "rollup -c",
     "npm:publish": "yarn build && yarn publish"
-  }
+  },
+  "files": [
+    "src",
+    "lib"
+  ]
 }
