@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -53,7 +53,7 @@
     "@koralabs/handle-svg": "2.1.2",
     "@koralabs/handles-public-api-interfaces": "^2.11.2",
     "framer-motion": "^10.16.4",
-    "qr-code-styling": "^1.6.0-rc.1"
+    "qr-code-styling": "1.5.0"
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
