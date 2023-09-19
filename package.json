@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -33,6 +33,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^3.29.2",
     "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^7.4.1",
