@@ -1,8 +1,10 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import image from "@rollup/plugin-image";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
+import nodePolyfills from "rollup-plugin-node-polyfills";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import dts from "rollup-plugin-dts";
 
 // This is required to read package.json file when
@@ -31,8 +33,12 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
+      resolve({
+        preferBuiltins: false,
+        browser: true,
+      }),
       commonjs(),
+      nodePolyfills(),
       typescript(),
       postcss({
         extensions: [".css"],
@@ -40,6 +46,7 @@ export default [
       typescript({
         tsconfig: "./tsconfig.json",
       }),
+      image(),
     ],
   },
   {

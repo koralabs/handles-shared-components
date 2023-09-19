@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import HandleSVG from '@koralabs/handle-svg';
+import opentype from 'opentype.js';
 import { IHandleSvgOptions } from '@koralabs/handles-public-api-interfaces';
 import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 import { hexStringToColor } from '../../helpers';
@@ -151,7 +152,7 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
     useEffect(() => {
         if (handleSvg && wawoffModule) {
             const buildSocials = async () => {
-                const socials = await handleSvg.buildSocialsSvg(wawoffModule.decompress);
+                const socials = await handleSvg.buildSocialsSvg(wawoffModule.decompress, opentype);
                 setLoadedSocials(socials);
             }
 
@@ -162,7 +163,7 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
     useEffect(() => {
         if (handleSvg && wawoffModule) {
             const buildFont = async () => {
-                const handleName = await handleSvg.buildHandleName(wawoffModule.decompress);
+                const handleName = await handleSvg.buildHandleName(wawoffModule.decompress, opentype);
                 setLoadedHandleName(handleName);
             }
 
@@ -173,7 +174,7 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
     useEffect(() => {
         if (handleSvg && wawoffModule) {
             const buildOg = async () => {
-                const og = await handleSvg.buildOG(wawoffModule.decompress);
+                const og = await handleSvg.buildOG(wawoffModule.decompress, opentype);
                 setLoadedOg(og);
             }
 

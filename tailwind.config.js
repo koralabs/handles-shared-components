@@ -1,0 +1,166 @@
+module.exports = {
+  purge: {
+    content: [
+      "./src/pages/**/*.{js,ts,jsx,tsx}",
+      "./src/components/**/*.{js,ts,jsx,tsx}",
+    ],
+    options: {
+      safelist: ["PhoneInputInput"],
+    },
+  },
+  plugins: [
+    // require('@tailwindcss/forms'),
+    // require('tailwind-scrollbar')({ nocompatible: true }),
+    // require('@tailwindcss/line-clamp')
+  ],
+  theme: {
+    colors: {
+      white: "#fff",
+      black: "#000",
+      transparent: "rgba(0, 0, 0, 0.0)",
+      dark: {
+        100: "#0B132B",
+        200: "#1C2541",
+        225: "#223d73",
+        250: "#285394",
+        300: "#3A506B",
+        350: "#56779F",
+        400: "#f5f5f5",
+        450: "rgba(77, 166, 255, 0.15)",
+        500: "rgba(10, 14, 59, 0.75)",
+      },
+      gray: {
+        200: "rgb(243 244 246)",
+        300: "#d1d5db",
+        400: "#9ca3af",
+        500: "#6b7280",
+        600: "rgb(75 85 99)",
+        700: "rgba(255, 255, 255, 0.65)",
+      },
+      primary: {
+        100: "#48ACF0",
+        200: "#0CD15B",
+      },
+      secondary: {
+        100: "#609776",
+        200: "#56779F",
+        300: "#3A506B",
+      },
+      red: {
+        500: "#f56565",
+      },
+      green: {
+        100: "#0ddd61",
+        200: "rgb(187 247 208)",
+        300: "rgb(134 239 172)",
+        400: "rgb(74 222 128)",
+        500: "rgb(34 197 94)",
+        600: "rgb(22 163 74)",
+        700: "rgb(21 128 61)",
+        800: "rgb(22 101 52)",
+        900: "rgb(20 83 45)",
+      },
+      teal: {
+        50: "#f0fdfa",
+        100: "#ccfbf1",
+        200: "#99f6e4",
+        300: "#5eead4",
+        400: "#2dd4bf",
+        500: "#14b8a6",
+        600: "#0d9488",
+        700: "#0f766e",
+        800: "#115e59",
+        900: "#134e4a",
+      },
+      blue: {
+        100: "#dbeafe",
+        300: "#25345e",
+        400: "#4DA6FF",
+        500: "#3b82f6",
+        700: "#1d4ed8",
+      },
+      brand: {
+        100: "rgba(255, 255, 255, 0.1)",
+        200: "#89A3BC",
+        300: "rgba(255, 255, 255, 0.05)",
+        400: "#3D85CC",
+        600: "#0A0E3B",
+        900: "#0b132b",
+      },
+      scrollbar: {
+        400: "#70B8FF",
+      },
+    },
+    fontFamily: {
+      sans: [
+        "Syne",
+        "Noto Sans",
+        "ui-sans-serif",
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica Neue",
+        "Arial",
+        "sans-serif",
+      ],
+      mono: ["Ubuntu Mono", "monospace"],
+    },
+    extend: {
+      fontSize: {
+        jumbo: "48px",
+      },
+      boxShadow: {
+        "3xl": "0 0px 30px 12px rgba(0, 0, 0, 0.3)",
+      },
+      backgroundImage: {
+        "grid-3d": "url('/assets/images/background_grid.png')",
+      },
+      spacing: {
+        "5vw": "5vw",
+        "10vw": "10vw",
+        "20vw": "20vw",
+        "30vw": "30vw",
+        "40vw": "40vw",
+        "50vw": "50vw",
+        "60vw": "60vw",
+        "70vw": "70vw",
+        // Add more viewport width units if needed
+        "5vh": "5vh",
+        "10vh": "10vh",
+        "20vh": "20vh",
+        "30vh": "30vh",
+        "40vh": "40vh",
+        "50vh": "50vh",
+        "60vh": "60vh",
+        "70vh": "70vh",
+        // Add more viewport height units if needed
+      },
+      width: {
+        "5vw": "5vw",
+        "10vw": "10vw",
+        "20vw": "20vw",
+        "30vw": "30vw",
+        "40vw": "40vw",
+        "50vw": "50vw",
+        "60vw": "60vw",
+        "70vw": "70vw",
+        // Add more viewport width units if needed
+      },
+      height: {
+        "5vh": "5vh",
+        "10vh": "10vh",
+        "20vh": "20vh",
+        "30vh": "30vh",
+        "40vh": "40vh",
+        "50vh": "50vh",
+        "60vh": "60vh",
+        "70vh": "70vh",
+        "90vh": "90vh",
+        "95vh": "95vh",
+        // Add more viewport height units if needed
+      },
+    },
+  },
+};
