@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import HandleSVG from '@koralabs/handle-svg';
-import opentype from 'opentype.js';
 import { IHandleSvgOptions } from '@koralabs/handles-public-api-interfaces';
 import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 import { hexStringToColor } from '../../helpers';
@@ -8,6 +7,7 @@ import { hexStringToColor } from '../../helpers';
 interface SvgHandleProps extends IHandleSvgOptions {
     handle: string;
     disableDollarSymbol?: boolean;
+    opentype: any;
 }
 
 const emptyOptions: IHandleSvgOptions = {
@@ -31,7 +31,7 @@ const emptyOptions: IHandleSvgOptions = {
     socials: undefined
 }
 
-export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollarSymbol, ...rest }) => {
+export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollarSymbol, opentype, ...rest }) => {
 
     const [loadedHandleName, setLoadedHandleName] = useState<string | null>(null);
     const [loadedOg, setLoadedOg] = useState<string | null>(null);

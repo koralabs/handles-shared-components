@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import opentype from "opentype.js";
 
 import { SvgHandle } from ".";
 
 const meta: Meta = {
   title: "Example/SvgHandle",
   component: SvgHandle,
-  tags: ["autodocs"],
   argTypes: {
     bg_color: { control: "color" },
     bg_border_color: { control: "color" },
@@ -34,5 +34,6 @@ type Story = StoryObj<typeof meta>;
 export const BasicHandle: Story = {
   args: {
     handle: "testing",
+    opentype,
   },
 };

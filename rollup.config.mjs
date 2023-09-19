@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import image from "@rollup/plugin-image";
 import typescript from "@rollup/plugin-typescript";
+import ignore from "rollup-plugin-ignore";
 import postcss from "rollup-plugin-postcss";
 import nodePolyfills from "rollup-plugin-node-polyfills";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
@@ -32,10 +33,11 @@ export default [
       },
     ],
     plugins: [
-      peerDepsExternal(),
+      peerDepsExternal({ includeDependencies: false }),
       resolve({
         preferBuiltins: false,
         browser: true,
+        skip: ["react", "react-dom", "qr-code-styling"],
       }),
       commonjs(),
       nodePolyfills(),
@@ -47,6 +49,7 @@ export default [
         tsconfig: "./tsconfig.json",
       }),
       image(),
+      ignore("qr-code-styling"),
     ],
   },
   {
