@@ -1,8 +1,15 @@
 # Shared Component Library for Handles
 
+## Storybook integration.
+ [Visit Storybook](https://koralabs.github.io/handles-shared-components/)
+
 ## Components
 ### SvgHandle
 Usage:
 ```
-<SvgHandle handle="handle.name" />
+import { Loader } from "@koralabs/handles-shared-components"
+
+const Component = () => {
+    return <Loader />
+}
 ```
