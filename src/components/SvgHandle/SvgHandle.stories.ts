@@ -25,6 +25,7 @@ const meta: Meta = {
     qr_image: { control: "text" },
     qr_bg_color: { control: "color" },
     socials: { control: "object" },
+    opentype: { table: { disable: true } },
   },
 } satisfies Meta<typeof SvgHandle>;
 
