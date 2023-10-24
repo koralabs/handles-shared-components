@@ -1394,10 +1394,10 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
-"@koralabs/handle-svg@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@koralabs/handle-svg/-/handle-svg-2.1.2.tgz#fc1789166a36587901030fdc42a1c72b96d1eed1"
-  integrity sha512-jTOrQIU6E3iziF4F1XiZmt9iENoIbJeNdhMyeq2txfxR7xrU5GS6kIWfqxRY3JsoOXDLPskLGTD1ISTO8S7c/w==
+"@koralabs/handle-svg@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@koralabs/handle-svg/-/handle-svg-2.2.0.tgz#cd40d90ed0c614eed864f1dc5b124e33b7f1d960"
+  integrity sha512-xlQRV59TaF2ejZ1dPl6iDmyzhJee2r9wXeuY2dP79h6QXBYvjFAfZ1onuvK6hJrvpejuksy5v1m5ZqVln58ybw==
   dependencies:
     "@koralabs/handles-public-api-interfaces" "2.4.0"
 
