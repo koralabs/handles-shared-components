@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { BiMoney } from "react-icons/bi";
 
-import { Button } from ".";
+import CustomInput from ".";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: any = {
-  title: "Example/Button",
-  component: Button,
+  title: "Example/CustomInput",
+  component: CustomInput,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: "centered",
@@ -16,15 +17,14 @@ const meta: any = {
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof CustomInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Main: Story = {
   args: {
-    className: "bg-blue-400 text-white",
-    children: "Test",
+    placeholder: "Placeholder...",
   },
 };
