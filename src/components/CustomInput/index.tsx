@@ -34,6 +34,8 @@ interface CustomInputProps {
   name?: string;
   disabled?: boolean;
   type?: string;
+  className?: string;
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -47,6 +49,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   name,
   disabled = false,
   type = "text",
+  className = "",
+  size = "md",
 }: CustomInputProps) => {
   const [localValue, setLocalValue] = useState(value || "");
 
@@ -81,9 +85,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
           value={register ? undefined : value || localValue}
           onChange={onChange ? handleChange : undefined}
           {...(register ? register(name, registerOptions) : {})} // Use register if provided, else, do nothing
-          className={`formfield-box transition-all text-white bg-brand-300 rounded-lg w-full ${
-            leftIcon ? "pl-8" : "pl-3"
-          } ${
+          className={`formfield-box transition-all text-white bg-brand-300 rounded-lg w-full
+          ${className}
+          ${leftIcon ? "pl-8" : "pl-3"} ${
             errorMessage
               ? "border-red-500 focus:border-red-500"
               : "border-secondary-200"
