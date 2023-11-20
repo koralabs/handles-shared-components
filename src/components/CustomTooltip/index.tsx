@@ -7,6 +7,8 @@ interface TooltipProps {
   position?: "top" | "right" | "bottom" | "left";
   children: React.ReactNode;
   className?: string;
+  color?: 'blue' | 'red' | 'green' | 'white';
+  minWidth?: number;
 }
 
 const CustomTooltip: React.FC<TooltipProps> = ({
@@ -14,8 +16,22 @@ const CustomTooltip: React.FC<TooltipProps> = ({
   position = "top",
   children,
   className = "",
+  color = 'blue',
+  minWidth
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  let tipColor = 'bg-blue-400';
+    switch (color) {
+        case 'red':
+            tipColor = 'bg-red-500';
+            break;
+        case 'green':
+            tipColor = 'bg-green-500';
+            break;
+        case 'white':
+            tipColor = 'bg-white';
+            break;
+    }
 
   return (
     <div
@@ -40,7 +56,7 @@ const CustomTooltip: React.FC<TooltipProps> = ({
                             }
                             ${position === "left" && "right-full mr-2"}
                         `}
-            style={{ minWidth: 100 }}
+            style={{ minWidth: minWidth ? minWidth : 100 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
