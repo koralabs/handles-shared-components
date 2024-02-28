@@ -30,7 +30,8 @@ export const Loader = ({ scale = 1, className = "" }: LoaderProps) => (
         </div>
       </motion.div>
       <motion.div
-        className="absolute left-6 top-3 origin-left"
+        className="absolute left-6 top-3"
+        style={{transformOrigin:"left"}}
         animate={{ rotate: -360 }}
         transition={{ ease: "linear", duration: 2.2, repeat: Infinity }}
       >
