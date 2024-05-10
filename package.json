@@ -68,8 +68,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:tsc": "tsc",
-    "build": "rollup -c",
-    "npm:publish": "yarn build && yarn publish"
+    "build": "chmod +x ./build.sh && ./build.sh",
+    "lint": "echo \"No linting configured\"",
+    "test": "echo \"No tests configured\""
   },
   "files": [
     "src",
