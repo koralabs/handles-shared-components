@@ -36,6 +36,7 @@ interface CustomInputProps {
   type?: string;
   className?: string;
   size?: "sm" | "md" | "lg" | "xl";
+  fullWidth?: boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -51,6 +52,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   type = "text",
   className = "",
   size = "md",
+  fullWidth
 }: CustomInputProps) => {
   const [localValue, setLocalValue] = useState(value || "");
 
@@ -68,8 +70,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   };
 
   return (
-    <div>
-      <div className="relative flex flex-row">
+    <>
+      <div className={`relative flex flex-row ${fullWidth ? 'w-full' : ''}`}>
         {leftIcon && (
           <div className="absolute h-full left-2">
             {React.cloneElement(leftIcon, {
@@ -87,11 +89,10 @@ const CustomInput: React.FC<CustomInputProps> = ({
           {...(register ? register(name, registerOptions) : {})} // Use register if provided, else, do nothing
           className={`formfield-box transition-all text-white bg-brand-300 rounded-lg w-full
           ${className}
-          ${leftIcon ? "pl-8" : "pl-3"} ${
-            errorMessage
+          ${leftIcon ? "pl-8" : "pl-3"} ${errorMessage
               ? "border-red-500 focus:border-red-500"
               : "border-secondary-200"
-          } ${disabled ? "opacity-50" : ""}`}
+            } ${disabled ? "opacity-50" : ""}`}
         />
 
         {errorMessage && (
@@ -103,7 +104,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {errorMessage && (
         <div className="text-sm text-red-500 mb-0 mt-1">{errorMessage}</div>
       )}
-    </div>
+    </>
   );
 };
 
