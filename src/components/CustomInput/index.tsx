@@ -3,6 +3,7 @@ import React, {
   useState,
   useEffect,
   JSXElementConstructor,
+  InputHTMLAttributes,
 } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { MdError } from "react-icons/md";
@@ -23,7 +24,7 @@ import { MdError } from "react-icons/md";
 //     placeholder="Example"
 // />;
 
-interface CustomInputProps {
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   register?: any;
@@ -35,7 +36,6 @@ interface CustomInputProps {
   disabled?: boolean;
   type?: string;
   className?: string;
-  size?: "sm" | "md" | "lg" | "xl";
   fullWidth?: boolean;
 }
 
@@ -51,8 +51,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   disabled = false,
   type = "text",
   className = "",
-  size = "md",
-  fullWidth
+  fullWidth,
+  ...rest
 }: CustomInputProps) => {
   const [localValue, setLocalValue] = useState(value || "");
 
@@ -93,6 +93,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
               ? "border-red-500 focus:border-red-500"
               : "border-secondary-200"
             } ${disabled ? "opacity-50" : ""}`}
+          {...rest}
         />
 
         {errorMessage && (
