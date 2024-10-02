@@ -26,14 +26,14 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     <div
     className={`text-sm flex flex-row rounded-full whitespace-nowrap
     ${wrapperClassName}
-    ${!disabled ? 'border border-dark-350 text-white' : 'text-gray-300 pointer-events-none'} `}
+    ${!disabled ? 'border border-dark-200 text-white' : 'text-gray-300 pointer-events-none'} `}
 >
     {buttons.map((bt, index) => {
         return (
             <div key={index} className="cursor-pointer w-full text-center" onClick={() => onChange(bt.value)}>
                 <p
                     className={`mb-0 transition-all rounded-full px-2 py-1
-                        ${selectedValue === bt.value ? 'bg-dark-350' : ''} 
+                        ${selectedValue === bt.value ? 'bg-dark-200' : ''} 
                         ${buttonClassName}
                     `}
                 >
