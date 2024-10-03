@@ -9,6 +9,7 @@ const meta: any = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: "centered",
+    controls: [{}]
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ["autodocs"],
@@ -20,15 +21,19 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Main: Story = {
   args: {
-    selectedValue: "test_1",
+    selectedValue: "tacos",
     buttons: [
       {
-        value: "test_1",
-        title: "Test 1",
+        value: "tacos",
+        title: "tacos",
       },
       {
-        value: "test_2",
-        title: "Test 2",
+        value: "burritos",
+        title: "burritos",
+      },
+      {
+        value: "nachos",
+        title: "nachos",
       },
     ],
   },
