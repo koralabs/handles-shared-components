@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface ButtonValue {
   value: string;
@@ -10,6 +10,7 @@ interface ButtonGroupProps {
   selectedValue: string;
   disabled?: boolean;
   onChange: (params: string) => void;
+  activeClassName?: string;
   wrapperClassName?: string;
   buttonClassName?: string;
 }
@@ -19,31 +20,43 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   selectedValue,
   disabled = false,
   onChange,
+  activeClassName,
   wrapperClassName = "",
   buttonClassName = "",
 }: ButtonGroupProps) => {
+  const [activeButton, setActiveButton] = useState(selectedValue);
+
+  const onClickButton = (value: string) => {
+    if (disabled) {
+      return;
+    }
+
+    setActiveButton(value);
+    onChange(value);
+  }
+
   return (
     <div
-    className={`text-sm flex flex-row rounded-full whitespace-nowrap
+      className={`text-sm flex flex-row rounded-lg whitespace-nowrap [&>div:first-child>div]:rounded-l-lg [&>div:last-child>div]:rounded-r-lg border border-white text-white
     ${wrapperClassName}
-    ${!disabled ? 'border border-dark-350 text-white' : 'text-gray-300 pointer-events-none'} `}
->
-    {buttons.map((bt, index) => {
+    ${disabled ? 'opacity-50' : ''} `}
+    >
+      {buttons.map((btn, index) => {
         return (
-            <div key={index} className="cursor-pointer w-full text-center" onClick={() => onChange(bt.value)}>
-                <p
-                    className={`mb-0 transition-all rounded-full px-2 py-1
-                        ${selectedValue === bt.value ? 'bg-dark-350' : ''} 
+          <div key={index} className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} w-full text-center`} onClick={() => onClickButton(btn.value)}>
+            <div
+              className={`mb-0 transition-all px-2 py-1
+                        ${activeButton === btn.value ? `${activeClassName ?? 'bg-primary-200'}` : ''} 
                         ${buttonClassName}
                     `}
-                >
-                    {bt.title}
-                </p>
+            >
+              {btn.title}
             </div>
+          </div>
         );
-    })}
-</div>
-);
+      })}
+    </div>
+  );
 };
 
 export default ButtonGroup;
