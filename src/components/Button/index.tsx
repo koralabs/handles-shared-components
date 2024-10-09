@@ -95,7 +95,7 @@ export const Button: React.FC<ButtonProps> = ({
     return (
       <button className={classes + " " + className} disabled={true} {...rest}>
         <div className="h-8 invert">
-          <div className="-mt-3.5">
+          <div>
             <Fade fadeKey={"loaderupgrade"} fadeDuration={0.2}>
               <Loader size={24} />
             </Fade>
