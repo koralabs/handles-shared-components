@@ -97,7 +97,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div className="h-8 invert">
           <div className="-mt-3.5">
             <Fade fadeKey={"loaderupgrade"} fadeDuration={0.2}>
-              <Loader scale={0.5} />
+              <Loader size={24} />
             </Fade>
           </div>
         </div>
