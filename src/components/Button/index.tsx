@@ -15,6 +15,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   loading?: boolean;
+  loadingSize?: number;
   animate?: boolean;
   icon?: string;
   children?: JSX.Element | JSX.Element[] | string | string[];
@@ -40,6 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   disabled,
   loading = false,
+  loadingSize = 24,
   ...rest
 }): JSX.Element => {
   // const classes = ['cursor-pointer hover:shadow-lg m-0 py-2 px-6 text-center rounded-3xl inline-block font-bold'];
@@ -97,7 +99,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div className="h-8 invert">
           <div>
             <Fade fadeKey={"loaderupgrade"} fadeDuration={0.2}>
-              <Loader size={24} />
+              <Loader size={loadingSize} />
             </Fade>
           </div>
         </div>
