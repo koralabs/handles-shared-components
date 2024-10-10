@@ -96,12 +96,12 @@ export const Button: React.FC<ButtonProps> = ({
   if (loading) {
     return (
       <button className={classes + " " + className} disabled={true} {...rest}>
-        <div className="h-8 invert">
-          <div>
-            <Fade fadeKey={"loaderupgrade"} fadeDuration={0.2}>
-              <Loader size={loadingSize} />
-            </Fade>
-          </div>
+        <div className="h-6 grayscale">
+          <Fade fadeKey={"loaderupgrade"} fadeDuration={0.2}>
+            <div className="h-6 w-6">
+                <Loader size={loadingSize} />
+            </div>
+          </Fade>
         </div>
       </button>
     );
