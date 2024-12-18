@@ -34,7 +34,7 @@ const FilterDropdown = ({ value, onChange, options, label }: FilterDropdownProps
                 <span className="text-gray-400">
                     {value ? options.find(opt => opt.value === value)?.label : label}
                 </span>
-                <BiChevronDown className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                <BiChevronDown className={`transition-transform text-white duration-200 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
