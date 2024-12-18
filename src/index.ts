@@ -5,7 +5,7 @@ import CustomInput from "./components/CustomInput";
 import CustomSelect from "./components/CustomSelect";
 import CustomSwitch from "./components/CustomSwitch";
 import CustomTooltip from "./components/CustomTooltip";
-
+import FilterDropdown from "./components/FilterDropdown";
 export {
   Button,
   Loader,
@@ -14,4 +14,5 @@ export {
   CustomSelect,
   CustomSwitch,
   CustomTooltip,
+  FilterDropdown
 };

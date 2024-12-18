@@ -7,7 +7,7 @@ interface TooltipProps {
   position?: "top" | "right" | "bottom" | "left";
   children: React.ReactNode;
   className?: string;
-  color?: 'blue' | 'red' | 'green' | 'white';
+  color?: "blue" | "red" | "green" | "white";
   minWidth?: number;
 }
 
@@ -16,22 +16,22 @@ const CustomTooltip: React.FC<TooltipProps> = ({
   position = "top",
   children,
   className = "",
-  color = 'blue',
-  minWidth
+  color = "blue",
+  minWidth,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  let tipColor = 'bg-blue-400';
-    switch (color) {
-        case 'red':
-            tipColor = 'bg-red-500';
-            break;
-        case 'green':
-            tipColor = 'bg-green-500';
-            break;
-        case 'white':
-            tipColor = 'bg-white';
-            break;
-    }
+  let tipColor = "bg-blue-400";
+  switch (color) {
+    case "red":
+      tipColor = "bg-red-500";
+      break;
+    case "green":
+      tipColor = "bg-green-500";
+      break;
+    case "white":
+      tipColor = "bg-white";
+      break;
+  }
 
   return (
     <div
@@ -44,18 +44,18 @@ const CustomTooltip: React.FC<TooltipProps> = ({
           <motion.div
             key={`label-tooltip-${label}`}
             className={`absolute bg-blue-500 text-white p-1 rounded text-xs text-center
-                            ${className}
-                            ${
-                              position === "top" &&
-                              "bottom-full mb-2 left-1/2 transform -translate-x-1/2"
-                            }
-                            ${position === "right" && "left-full ml-2"}
-                            ${
-                              position === "bottom" &&
-                              "top-full mt-2 left-1/2 transform -translate-x-1/2"
-                            }
-                            ${position === "left" && "right-full mr-2"}
-                        `}
+                ${className}
+                ${
+                  position === "top" &&
+                  "bottom-full mb-2 left-1/2 transform -translate-x-1/2"
+                }
+                ${position === "right" && "left-full ml-2"}
+                ${
+                  position === "bottom" &&
+                  "top-full mt-2 left-1/2 transform -translate-x-1/2"
+                }
+                ${position === "left" && "right-full mr-2"}
+            `}
             style={{ minWidth: minWidth ? minWidth : 100 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
