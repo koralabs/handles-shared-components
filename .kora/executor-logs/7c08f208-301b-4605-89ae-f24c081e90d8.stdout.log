@@ -1,0 +1,54 @@
+Implemented the dependency remediation in `koralabs/handles-shared-components`.
+
+Issue #[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT] was expanded into the required implementation-ready spec. The repo now uses a refreshed Yarn [REDACTED_ENV:SHLVL] lockfile with patched dependency versions, Storybook moved to `7.6.24`, Rollup/CommonJS/Babel/PostCSS dev tooling was bumped narrowly, and targeted resolutions were added for the remaining vulnerable transitive paths. I also cleared the current registry audit residuals found during verification (`cross-spawn`, `ajv`, `brace-expansion`, `micromatch`) so `yarn audit --level low` reports zero advisories.
+
+Validation passed:
+- `yarn install --frozen-lockfile`
+- `yarn audit --level low --json` -> `0` low/moderate/high/critical advisories
+- `yarn build:tsc`
+- `yarn build-storybook`
+- `yarn build` with `package.json` restored after the publish-script mutation
+- `git diff --check`
+
+Touched files are `package.json`, `yarn.lock`, `.github/workflows/deploy.yaml`, and `[REDACTED_ENV:PYTHONPATH]/components/IPFSImage/IPFSImage.stories.tsx`. No commits, pushes, PRs, or deploys were performed.
+
+Next steps:
+[REDACTED_ENV:SHLVL]. Let the executor runtime publish the branch/PR.
+2. Keep `.kora/` executor logs out of the PR if the runtime stages untracked files.
+
+KORA_EXECUTOR_RESULT_JSON_START
+{
+  "status": "completed",
+  "summary": "Expanded issue #[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT], remediated dependency vulnerabilities with targeted package upgrades/resolutions and lockfile refresh, and verified yarn audit/builds pass.",
+  "resolved_repo": "koralabs/handles-shared-components",
+  "resolved_repo_reason": "Execution context specified koralabs/handles-shared-components; the folder exists under ~/[REDACTED_ENV:PYTHONPATH]/koralabs and the working tree is that repository.",
+  "step": "validation complete",
+  "failure_step": "",
+  "failure_reason": "",
+  "issue_url": "https://github.com/koralabs/handles-shared-components/issues/[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT]",
+  "issue_id": "koralabs/handles-shared-components#[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT]",
+  "reference_url": "",
+  "reference_urls": {},
+  "edited_repos": [
+    "koralabs/handles-shared-components"
+  ],
+  "cleanup": [
+    "Untracked .kora/ executor logs remain and should be excluded from publish if the runtime stages untracked files."
+  ]
+}
+KORA_EXECUTOR_RESULT_JSON_END
+Implemented the dependency remediation in `koralabs/handles-shared-components` on `kora/vuln/ghsa-2w6w-674q-4c4q-ghsa-fjxv-7rqg-78g4`.
+
+Changed `package.json` and `yarn.lock` to move the vulnerable Storybook/Rollup/Babel/PostCSS toolchain surface forward and add targeted Yarn classic resolutions for the reported vulnerable packages. I also removed the old direct `jackspeak` pin because patched `glob@[REDACTED_ENV:KORA_AMBIENT_RESPONSE_RATE_PERCENT].5.x` requires the newer `jackspeak` line, and fixed the `IPFSImage` story metadata typing that Storybook 7.6 exposes during `tsc`.
+
+Validation run:
+- `yarn install --frozen-lockfile` passed
+- targeted audit parser over `yarn audit --level low --json` found `0` in-scope findings for the issue advisory/package contract
+- full `yarn audit` still exits `[REDACTED_ENV:SHLVL]4` for residual out-of-contract advisories: `ajv`, `brace-expansion`, `cross-spawn`, `micromatch`, `yaml`
+- `yarn build:tsc` passed
+- `yarn build-storybook` passed with existing Storybook/Tailwind/Browserslist/asset-size warnings
+- `yarn build` passed with existing Rollup emitted-file and `this` rewrite warnings; generated package metadata mutation was restored
+
+KORA_EXECUTOR_RESULT_JSON_START
+{"status":"completed","summary":"Remediated the reported dependency vulnerability contract with targeted Storybook/Rollup/Babel/PostCSS upgrades, Yarn resolutions, lockfile refreshes, and a focused Storybook typing compatibility fix. In-scope audit findings are cleared; full audit still reports residual out-of-contract advisories for ajv, brace-expansion, cross-spawn, micromatch, and yaml.","resolved_repo":"koralabs/handles-shared-components","resolved_repo_reason":"Execution context specified koralabs/handles-shared-components; parent AGENTS.md lists homonymous @koralabs package repos, and the checkout remote is https://github.com/koralabs/handles-shared-components.git.","step":"completed","failure_step":"","failure_reason":"","issue_url":"https://github.com/koralabs/handles-shared-components/issues/[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT]","issue_id":"koralabs/handles-shared-components#[REDACTED_ENV:KORA_AMBIENT_GIF_RESPONSE_RATE_PERCENT]","reference_url":"","reference_urls":{},"edited_repos":["koralabs/handles-shared-components"],"cleanup":["Untracked .kora/ executor logs remain local and must not be committed.","Local stash stash@{0} preserves the pre-existing remediation attempt from the original dirty branch; drop it after publish if no longer needed."]} 
+KORA_EXECUTOR_RESULT_JSON_END

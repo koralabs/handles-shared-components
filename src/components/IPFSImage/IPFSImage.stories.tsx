@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import React from "react";
 import IPFSImage, { IPFSImageProps } from ".";
 
-const meta: any = {
+const meta = {
   title: "Example/IPFSImage",
   component: IPFSImage,
   parameters: {
@@ -10,7 +10,7 @@ const meta: any = {
   },
   tags: ["autodocs"],
   argTypes: {},
-};
+} satisfies Meta<typeof IPFSImage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -39,4 +39,3 @@ export const Main: Story = {
   },
   render: StoryRender
 };
-
