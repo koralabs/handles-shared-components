@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Publish ${{ github.workflow }}
         id: publish
@@ -39,20 +39,20 @@ jobs:
           curl -H "Authorization: Bearer ${DEPLOYMENT_ACCESS_TOKEN}" https://raw.githubusercontent.com/koralabs/adahandle-deployments/master/common/main.sh -o main.sh
           chmod +x main.sh && ./main.sh
 
-      - name: Checkout nodev2
-        uses: actions/setup-node@v2
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Run yarn
-        run: yarn
+          node-version: 20
+      - name: Install deps (npm)
+        run: npm ci
       - name: Run Build Storybook
-        run: yarn build-storybook
+        run: npm run build-storybook
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./storybook-static"
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
