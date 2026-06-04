@@ -1,4 +1,4 @@
-import { HexString } from "@koralabs/handles-public-api-interfaces";
+import { HexString } from "@koralabs/kora-labs-common";
 
 export const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));

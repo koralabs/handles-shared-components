@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import HandleSVG from '@koralabs/handle-svg';
-import { IHandleSvgOptions } from '@koralabs/handles-public-api-interfaces';
+import { IHandleSvgOptions } from '@koralabs/kora-labs-common';
 import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 import { hexStringToColor } from '../../helpers';
 

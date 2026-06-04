@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -119,14 +119,14 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@koralabs/handle-svg": "^3.0.15",
-    "@koralabs/handles-public-api-interfaces": "^2.11.2",
     "framer-motion": "^10.16.4",
     "qr-code-styling": "1.5.0",
     "rc-slider": "^10.5.0",
     "react-color": "^2.19.3",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
-    "tinycolor2": "^1.6.0"
+    "tinycolor2": "^1.6.0",
+    "@koralabs/kora-labs-common": "^6.7.4"
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
