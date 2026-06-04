@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
@@ -118,7 +118,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
-    "@koralabs/handle-svg": "2.2.0",
+    "@koralabs/handle-svg": "^3.0.15",
     "@koralabs/handles-public-api-interfaces": "^2.11.2",
     "framer-motion": "^10.16.4",
     "qr-code-styling": "1.5.0",

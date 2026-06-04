@@ -37,6 +37,8 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
     const [loadedOg, setLoadedOg] = useState<string | null>(null);
     const [loadedSocials, setLoadedSocials] = useState<string | null>(null);
     const [loadedQrCode, setLoadedQrCode] = useState<string | null>(null);
+    const [loadedBackgroundImage, setLoadedBackgroundImage] = useState<string | null>(null);
+    const [loadedPfpImage, setLoadedPfpImage] = useState<string | null>(null);
     const [wawoffModule, setWawoffModule] = useState<any | null>(null);
 
     const componentRef = useRef<HTMLDivElement | null>(null);
@@ -141,13 +143,22 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
         return handleSvg?.buildDollarSign();
     }, [disableDollarSymbol, bg_color, bg_image, renderedSvgSize]);
 
-    const backgroundImage = useMemo(() => {
-        return handleSvg?.buildBackgroundImageSync()
+    // handle-svg 3.x removed the public sync builders (buildBackgroundImageSync/buildPfpImageSync);
+    // the public methods are now async (they fetch the image, then build). Mirror the other async
+    // builders below (buildSocials/buildHandleName/buildOg) with useEffect + state.
+    useEffect(() => {
+        if (handleSvg) {
+            const build = async () => setLoadedBackgroundImage(await handleSvg.buildBackgroundImage());
+            build();
+        }
     }, [bg_image, renderedSvgSize]);
 
-    const pfpImage = useMemo(() => {
-        return handleSvg?.buildPfpImageSync();
-    }, [pfp_image, pfp_zoom, pfp_offset, pfp_border_color, renderedSvgSize])
+    useEffect(() => {
+        if (handleSvg) {
+            const build = async () => setLoadedPfpImage(await handleSvg.buildPfpImage());
+            build();
+        }
+    }, [pfp_image, pfp_zoom, pfp_offset, pfp_border_color, renderedSvgSize]);
 
     useEffect(() => {
         if (handleSvg && wawoffModule) {
@@ -187,8 +198,8 @@ export const SvgHandle: React.FC<SvgHandleProps> = ({ handle = '', disableDollar
             <svg width={renderedSvgSize} height={renderedSvgSize} xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff', width: '100%', height: 'auto' }}>
                 {background && <svg dangerouslySetInnerHTML={{ __html: background }} />}
                 {defaultBackground && <svg dangerouslySetInnerHTML={{ __html: defaultBackground }} />}
-                {backgroundImage && <svg dangerouslySetInnerHTML={{ __html: backgroundImage }} />}
-                {pfpImage && <svg dangerouslySetInnerHTML={{ __html: pfpImage }} />}
+                {loadedBackgroundImage && <svg dangerouslySetInnerHTML={{ __html: loadedBackgroundImage }} />}
+                {loadedPfpImage && <svg dangerouslySetInnerHTML={{ __html: loadedPfpImage }} />}
                 {textRibbon && <svg dangerouslySetInnerHTML={{ __html: textRibbon }} />}
                 {backgroundBorder && <svg dangerouslySetInnerHTML={{ __html: backgroundBorder }} />}
                 {logoHandle && <svg dangerouslySetInnerHTML={{ __html: logoHandle }} />}
