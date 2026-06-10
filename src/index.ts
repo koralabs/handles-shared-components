@@ -16,3 +16,5 @@ export {
   CustomTooltip,
   FilterDropdown
 };
+
+export * from "./helpers/walletConnector";
