@@ -7,7 +7,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# contents: read for checkout; pages/id-token for the Storybook GitHub Pages deploy.
 permissions:
   contents: read
   pages: write
@@ -24,27 +24,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Publish ${{ github.workflow }}
-        id: publish
-        env:
-          DEPLOYMENT_ACCESS_TOKEN: ${{ secrets.DEPLOYMENT_ACCESS_TOKEN }}
-          SECRETS_CONTEXT: ${{ toJson(secrets) }}
-          VARS_CONTEXT: ${{ toJson(vars) }}
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-          DEPLOYMENT_TYPE: npm-publish
-          NODE_VERSION: 20
-          IS_PUBLIC: true
-        run: |
-          set -eu
-          curl -H "Authorization: Bearer ${DEPLOYMENT_ACCESS_TOKEN}" https://raw.githubusercontent.com/koralabs/adahandle-deployments/master/common/main.sh -o main.sh
-          chmod +x main.sh && ./main.sh
-
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: https://registry.npmjs.org
+
       - name: Install deps (npm)
         run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # npm publish — direct, using the NPM_TOKEN secret. Replaces the retired
+      # adahandle-deployments AWS pipeline (DEPLOYMENT_TYPE=npm-publish), whose
+      # AWS security token was invalid ("UnrecognizedClientException"), so the
+      # package hadn't published since. build.sh reshapes package.json to
+      # main=index.js + files=["*"] and rollup emits to lib/, so publish from
+      # lib/ with the reshaped manifest copied in (mirrors kora-labs-common's
+      # deploy). npm publish is a no-op-safe: it fails only if the version
+      # already exists, so bump package.json to release.
+      - name: Publish to npm
+        run: cp package.json ./lib/package.json && cd ./lib && npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Run Build Storybook
         run: npm run build-storybook
       - name: Setup Pages
