@@ -29,11 +29,16 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
+          scope: '@koralabs'
 
       - name: Install deps (npm)
-        # npm install (not ci): the committed package-lock is stale (missing yaml@2.9.0);
-        # the retired AWS pipeline never ran npm ci so it went unnoticed. install tolerates it.
-        run: npm install --no-audit --no-fund
+        # The committed package-lock pins @koralabs deps to GitHub Packages and is stale
+        # (missing yaml@2.9.0). Both @koralabs deps (kora-labs-common, handle-svg) are on
+        # npmjs, so drop the lock and re-resolve from npmjs (scope:@koralabs above) — avoids
+        # the GitHub Packages auth the retired AWS pipeline set up.
+        run: rm -f package-lock.json && npm install --no-audit --no-fund
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build
         run: npm run build
