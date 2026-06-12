@@ -9,11 +9,18 @@ export interface AvailableWallet {
     icon: string;
 }
 
+/** CIP-30 `enable` options. `extensions` requests optional wallet extensions
+ *  (e.g. CIP-95 governance, CIP-103) — the wallet only lights up an extension's
+ *  API surface when the dApp asks for it here. Passing nothing enables plain CIP-30. */
+export interface Cip30EnableOptions {
+    extensions?: { cip: number }[];
+}
+
 export interface Cip30WalletStub {
     icon?: string;
     name?: string;
     apiVersion?: string;
-    enable?: () => Promise<Cip30Api>;
+    enable?: (options?: Cip30EnableOptions) => Promise<Cip30Api>;
 }
 
 export interface Cip30Api {
@@ -48,12 +55,18 @@ export const listAvailableWallets = (cardano: CardanoNamespace): AvailableWallet
 };
 
 // Enable a wallet by key, returning its CIP-30 API. Throws if the wallet isn't injected.
-export const enableWallet = async (cardano: CardanoNamespace, walletKey: string): Promise<Cip30Api> => {
+// `options.extensions` is passed straight through to the wallet's `enable` so callers can
+// request CIP-95 (governance/DRep), CIP-103, etc. — drop the arg for plain CIP-30.
+export const enableWallet = async (
+    cardano: CardanoNamespace,
+    walletKey: string,
+    options?: Cip30EnableOptions
+): Promise<Cip30Api> => {
     const wallet = cardano?.[walletKey];
     if (typeof wallet?.enable !== 'function') {
         throw new Error(`Wallet "${walletKey}" is not available`);
     }
-    return wallet.enable();
+    return wallet.enable(options);
 };
 
 // Build the normalized (raw CIP-30) connection payload from an enabled API.
