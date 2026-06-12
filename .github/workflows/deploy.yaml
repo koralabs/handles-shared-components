@@ -31,7 +31,9 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install deps (npm)
-        run: npm ci
+        # npm install (not ci): the committed package-lock is stale (missing yaml@2.9.0);
+        # the retired AWS pipeline never ran npm ci so it went unnoticed. install tolerates it.
+        run: npm install --no-audit --no-fund
 
       - name: Build
         run: npm run build
