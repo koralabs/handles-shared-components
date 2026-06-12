@@ -27,7 +27,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org
           scope: '@koralabs'
 
@@ -37,8 +37,6 @@ jobs:
         # npmjs, so drop the lock and re-resolve from npmjs (scope:@koralabs above) — avoids
         # the GitHub Packages auth the retired AWS pipeline set up.
         run: rm -f package-lock.json && npm install --no-audit --no-fund
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build
         run: npm run build
@@ -52,9 +50,7 @@ jobs:
       # deploy). npm publish is a no-op-safe: it fails only if the version
       # already exists, so bump package.json to release.
       - name: Publish to npm
-        run: cp package.json ./lib/package.json && cd ./lib && npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: cp package.json ./lib/package.json && cd ./lib && npm publish --provenance --access public
 
       - name: Run Build Storybook
         run: npm run build-storybook
