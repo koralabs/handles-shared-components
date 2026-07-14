@@ -130,7 +130,7 @@
     "build": "chmod +x ./build.sh && ./build.sh",
     "lint": "echo \"No linting configured\"",
     "test": "tsx --test \"test/**/*.test.ts\"",
-    "coverage": "tsx --test --experimental-test-coverage --test-coverage-include=src/helpers/*.ts \"test/**/*.test.ts\""
+    "coverage": "tsx --test --experimental-test-coverage --test-coverage-include=src/**/*.ts --test-coverage-include=src/**/*.tsx --test-coverage-exclude=src/**/*.stories.ts --test-coverage-exclude=src/**/*.stories.tsx \"test/**/*.test.ts\""
   },
   "files": [
     "*"
