@@ -1,6 +1,6 @@
 {
   "name": "@koralabs/handles-shared-components",
-  "version": "0.5.14",
+  "version": "0.5.15",
   "main": "index.js",
   "module": "index.esm.js",
   "types": "index.d.ts",
@@ -79,7 +79,7 @@
     "jscodeshift/node-dir/minimatch": "3.1.4",
     "rimraf/glob/minimatch": "3.1.4",
     "test-exclude/glob/minimatch": "3.1.4",
-    "nanoid": "3.3.11",
+    "nanoid": "3.3.17",
     "on-headers": "1.1.0",
     "path-to-regexp": "0.1.13",
     "@rollup/pluginutils/picomatch": "2.3.2",
@@ -101,7 +101,9 @@
     "cosmiconfig/yaml": "1.10.3",
     "postcss-load-config/yaml": "2.8.3",
     "rollup-plugin-postcss/yaml": "1.10.3",
-    "uuid": "11.1.1"
+    "uuid": "11.1.1",
+    "brace-expansion": "5.0.9",
+    "fast-uri": "3.1.5"
   },
   "overrides": {
     "esbuild": "0.28.1",
@@ -109,9 +111,10 @@
     "giget": {
       "tar": "7.5.13"
     },
-    "brace-expansion": "5.0.8",
-    "fast-uri": "3.1.4",
-    "svgo": "2.8.3"
+    "brace-expansion": "5.0.9",
+    "fast-uri": "3.1.5",
+    "svgo": "2.8.3",
+    "nanoid": "3.3.17"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
