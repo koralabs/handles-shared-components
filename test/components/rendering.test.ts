@@ -96,6 +96,23 @@ test("ButtonGroup renders disabled controls without active click affordance", ()
   assert.equal((html.match(/cursor-not-allowed/g) ?? []).length, 2);
 });
 
+test("ButtonGroup uses the default active class when none is supplied", () => {
+  const html = render(
+    React.createElement(ButtonGroup, {
+      buttons: [
+        { value: "compact", title: "Compact" },
+        { value: "expanded", title: "Expanded" },
+      ],
+      selectedValue: "compact",
+      onChange: () => undefined,
+    })
+  );
+
+  assert.match(html, /bg-primary-200/);
+  assert.match(html, />Compact<\/div>/);
+  assert.match(html, />Expanded<\/div>/);
+});
+
 test("CustomSwitch renders enabled and disabled visual states", () => {
   const enabledHtml = render(React.createElement(CustomSwitch, { enabled: true, className: "switch-shell" }));
   const disabledHtml = render(React.createElement(CustomSwitch, { enabled: false, allowToggle: false }));
@@ -137,6 +154,23 @@ test("FilterDropdown falls back to the prompt label when no value is selected", 
   );
 
   assert.match(html, />Choose status<\/span>/);
+});
+
+test("FilterDropdown leaves the label empty when the current value is not in the option list", () => {
+  const html = render(
+    React.createElement(FilterDropdown, {
+      value: "archived",
+      label: "Status",
+      onChange: () => undefined,
+      options: [
+        { value: "all", label: "All" },
+        { value: "active", label: "Active" },
+      ],
+    })
+  );
+
+  assert.match(html, /<span class="text-gray-400"><\/span>/);
+  assert.doesNotMatch(html, />Status<\/span>/);
 });
 
 test("Fade wraps children with the requested transition duration", () => {
