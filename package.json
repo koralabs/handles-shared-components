@@ -1,9 +1,9 @@
 {
   "name": "@koralabs/handles-shared-components",
   "version": "0.5.15",
-  "main": "index.js",
-  "module": "index.esm.js",
-  "types": "index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "repository": "https://github.com/koralabs/handles-shared-components.git",
   "author": "bigirishlion <bigirishlion@koralabs.io>",
   "license": "MIT",

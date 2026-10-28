@@ -42,15 +42,21 @@ jobs:
         run: npm run build
 
       # npm publish — direct, using the NPM_TOKEN secret. Replaces the retired
-      # adahandle-deployments AWS pipeline (DEPLOYMENT_TYPE=npm-publish), whose
-      # AWS security token was invalid ("UnrecognizedClientException"), so the
-      # package hadn't published since. build.sh reshapes package.json to
-      # main=index.js + files=["*"] and rollup emits to lib/, so publish from
-      # lib/ with the reshaped manifest copied in (mirrors kora-labs-common's
-      # deploy). npm publish is a no-op-safe: it fails only if the version
-      # already exists, so bump package.json to release.
+      # adahandle-deployments AWS pipeline (DEPLOYMENT_TYPE=npm-publish).
+      # build.sh makes lib/ the complete package (rollup output plus the publish
+      # manifest lib/package.json: main=index.js, files=["*"]), so publish from
+      # lib/. Every master push runs this, but only a version bump releases:
+      # an already-published version is skipped instead of failing the deploy
+      # (and the Storybook steps after it).
       - name: Publish to npm
-        run: cp package.json ./lib/package.json && cd ./lib && npm publish --provenance --access public
+        working-directory: ./lib
+        run: |
+          VERSION="$(jq -r .name package.json)@$(jq -r .version package.json)"
+          if [ -n "$(npm view "$VERSION" version 2>/dev/null)" ]; then
+            echo "$VERSION is already on npm; bump package.json to release."
+          else
+            npm publish --provenance --access public
+          fi
 
       - name: Run Build Storybook
         run: npm run build-storybook

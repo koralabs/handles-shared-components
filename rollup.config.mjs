@@ -53,8 +53,8 @@ export default [
     ],
   },
   {
-    input: "index.d.ts",
-    output: [{ file: "index.d.ts", format: "es" }],
+    input: "lib/index.d.ts",
+    output: [{ file: "lib/index.d.ts", format: "es" }],
     plugins: [dts()],
     external: [/\.css$/],
   },
