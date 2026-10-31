@@ -1,0 +1,8 @@
+# handles-shared-components: exact repo-root-relative paths, one per line. The wallet connector, the Handle image component, and the publish chain.
+.enclave
+CANONICAL_CONTRACT.md
+src/helpers/walletConnector.ts
+src/components/SvgHandle/index.tsx
+build.sh
+package.json
+.github/workflows/deploy.yml
