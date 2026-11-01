@@ -203,6 +203,9 @@ test('CustomTooltip toggles hover state and renders positioned labels', async ()
 
   assert.match(tooltip.props.className, /left-full ml-2/);
   assert.match(tooltip.props.className, /tooltip-extra/);
+  // the color prop must reach the label (it was computed but a hard-coded bg-blue-500 was always rendered)
+  assert.match(tooltip.props.className, /bg-green-500/);
+  assert.doesNotMatch(tooltip.props.className, /bg-blue-500/);
   assert.equal(tooltip.props.style.minWidth, 160);
   assert.equal(tooltip.props.children, 'Copy value');
   assert.equal(childWrapper.props.className, 'text-white');

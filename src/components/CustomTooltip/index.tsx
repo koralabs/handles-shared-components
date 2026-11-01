@@ -20,16 +20,16 @@ const CustomTooltip: React.FC<TooltipProps> = ({
   minWidth,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  let tipColor = "bg-blue-400";
+  let tipColor = "bg-blue-500 text-white";
   switch (color) {
     case "red":
-      tipColor = "bg-red-500";
+      tipColor = "bg-red-500 text-white";
       break;
     case "green":
-      tipColor = "bg-green-500";
+      tipColor = "bg-green-500 text-white";
       break;
     case "white":
-      tipColor = "bg-white";
+      tipColor = "bg-white text-black";
       break;
   }
 
@@ -43,7 +43,7 @@ const CustomTooltip: React.FC<TooltipProps> = ({
         {isVisible && (
           <motion.div
             key={`label-tooltip-${label}`}
-            className={`absolute bg-blue-500 text-white p-1 rounded text-xs text-center
+            className={`absolute ${tipColor} p-1 rounded text-xs text-center
                 ${className}
                 ${
                   position === "top" &&
