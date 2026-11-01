@@ -331,4 +331,5 @@ test("CustomTooltip renders alternate positions and color branches", async () =>
   const [leftPresence] = childrenOf(left.result as React.ReactElement);
   const [leftTooltip] = React.Children.toArray(leftPresence.props.children) as React.ReactElement[];
   assert.match(leftTooltip.props.className, /right-full mr-2/);
+  assert.match(leftTooltip.props.className, /top-1\/2 .*-translate-y-1\/2/); // vertically centered on the trigger
 });
